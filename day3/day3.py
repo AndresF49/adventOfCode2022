@@ -1,3 +1,5 @@
+import os
+
 def findCommonletter(sack1,sack2,sack3):
 	dict = {}
 
@@ -19,7 +21,7 @@ def findCommonletter(sack1,sack2,sack3):
 
 def main():
 	total = 0
-	line = [l.strip() for l in open("input3.txt")]
+	line = [l.strip() for l in open(os.getcwd() + "/day3/input3.txt")]
 
 	for index in range(0,len(line),3):
 	# for word in line:
