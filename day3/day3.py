@@ -1,25 +1,55 @@
+def findCommonletter(sack1,sack2,sack3):
+	dict = {}
+
+	for i in range(65, 91):
+			dict.update({chr(i): [0,0,0]})
+			dict.update({(chr(i + 32)): [0,0,0]})
+
+	for let in sack1:
+		dict[let][0] += 1
+	for let in sack2:
+		dict[let][1] += 1
+	for let in sack3:
+		dict[let][2] += 1
+
+	for key,val in dict.items():
+		if val[0] and val[1] and val[2]:
+			return key
+
+
 def main():
 	total = 0
 	line = [l.strip() for l in open("input3.txt")]
-	for word in line:
+
+	for index in range(0,len(line),3):
+	# for word in line:
+		
 		dict = {}
 		letterUsed = ''
 
 		for i in range(65, 91):
-			dict.update({chr(i): False})
-			dict.update({(chr(i + 32)): False})
+			dict.update({chr(i): 0})
+			dict.update({(chr(i + 32)): 0})
 
-		firstPart = word[:int(len(word) / 2)]
-		secondPart = word[int(len(word) / 2):]
+		sack1 = line[index]
+		sack2 = line[index+1]
+		sack3 = line[index+2]
+		
+		# for k in range(3):
+		# 	# firstPart = line[index + k][:int(len(line[index + k]) / 2)]
+		# 	# secondPart = line[index + k][int(len(line[index + k]) / 2):]
+			
+	
+		# 	for let in firstPart:
+		# 		dict[let] += 1
+	
+		# 	for let in secondPart:
+		# 		if dict[let] == 3:
+		# 			# letter was identifier and is shared
+		# 			letterUsed = let
+		# 			break
 
-		for let in firstPart:
-			dict[let] = True
-
-		for let in secondPart:
-			if dict[let]:
-				# letter was used already and is shared
-				letterUsed = let
-				break
+		letterUsed = findCommonletter(sack1,sack2,sack3)
 
 		if ord(letterUsed) >= 97 and ord(letterUsed) <= 122:
 			total += (ord(letterUsed) - 96)
