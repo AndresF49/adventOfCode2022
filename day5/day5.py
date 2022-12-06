@@ -18,6 +18,7 @@ def main():
 
 	line = [l.strip() for l in open("input5.txt")]
 	for row in range(10, len(line)):
+		tempStack = []
 		# print(line[row])
 		amountToMove = int(line[row][4:line[row].index(' ', 5)].strip())
 		newStr = line[row][9:]
@@ -28,10 +29,15 @@ def main():
 		while outer < amountToMove:
 			# stackArr[stackToFill]
 			# stackArr[stackToEmpty]
-			stackArr[stackToFill-1].append(stackArr[stackToEmpty-1].pop())
+			# stackArr[stackToFill-1].append(stackArr[stackToEmpty-1].pop())
 			outer += 1
+
+			tempStack.append(stackArr[stackToEmpty-1].pop())
+			
 			# print(stackArr)
 			# print(outer)
+		while tempStack:
+			stackArr[stackToFill-1].append(tempStack.pop())
 
 	ans = ""
 
