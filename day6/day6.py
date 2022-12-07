@@ -1,29 +1,23 @@
 import os
 
 def main():
-	alphaDict = {}
-	for i in range(97,123):
-		alphaDict[chr(i)] = False
 
+	queueOf14 = [] 
 	line = [l.strip() for l in open(os.getcwd() + "/input6.txt")]
 	line = line[0]
 
-	# counter = 0
-	# for i in range(len(line)):
-	# 	if alphaDict[line[i]]:
-	# 		continue
-	# 	if alphaDict[line[i]] == False:
-	# 		# this is a new character found
-	# 		counter += 1
-	# 		alphaDict[line[i]] = True
-	# 		if counter == 4:
-	# 			print(i+1)
-	# 			return 0
-
-	for i in range(3,len(line)):
-		if line[i-3] != line[i-2] and line[i-3] != line[i-1] and line[i-3] != line[i] and line[i-2] != line[i-1] and line[i-2] != line[i] and line[i-1] != line[i]:
-			print(i+1)
+	for i in range(len(line)):
+		tempSet = list(set(queueOf14))
+		if len(tempSet) == 14:
+			print(i)
 			return 1
+
+		if i >= 14:
+			queueOf14.pop(0)
+			queueOf14.append(line[i])
+			
+		else:
+			queueOf14.append(line[i])
 		
 	return 0
 
